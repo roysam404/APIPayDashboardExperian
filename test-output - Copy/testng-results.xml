@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-09-21T12:07:02 IST" name="API Regression Suite" finished-at="2023-09-21T12:07:06 IST" duration-ms="3950">
+    <groups>
+    </groups>
+    <test started-at="2023-09-21T12:07:02 IST" name="Amadeus Flight API Test" finished-at="2023-09-21T12:07:06 IST" duration-ms="3950">
+      <class name="com.qa.gorest.tests.AmadeusAPITest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.qa.gorest.tests.AmadeusAPITest@49ff7d8c]" started-at="2023-09-21T12:07:02 IST" name="setUp" finished-at="2023-09-21T12:07:02 IST" duration-ms="275" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="flightAPiSetup()[pri:0, instance:com.qa.gorest.tests.AmadeusAPITest@49ff7d8c]" started-at="2023-09-21T12:07:02 IST" name="flightAPiSetup" finished-at="2023-09-21T12:07:04 IST" duration-ms="2306" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- flightAPiSetup -->
+        <test-method signature="getFlightInfoTest()[pri:0, instance:com.qa.gorest.tests.AmadeusAPITest@49ff7d8c]" started-at="2023-09-21T12:07:04 IST" name="getFlightInfoTest" finished-at="2023-09-21T12:07:06 IST" duration-ms="1287" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getFlightInfoTest -->
+      </class> <!-- com.qa.gorest.tests.AmadeusAPITest -->
+    </test> <!-- Amadeus Flight API Test -->
+  </suite> <!-- API Regression Suite -->
+</testng-results>
