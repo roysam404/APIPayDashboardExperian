@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.restassured.RestAssured;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -27,6 +28,8 @@ public class AmadeusAPITest extends BaseTest{
 	//@Parameters({"baseURI", "grantType", "clientId", "clientSecret"})
 	@BeforeMethod
 	public void flightAPiSetup() {
+		RALogger.logOutputToFile("This is before Setup for flightAPiSetup");
+		RestAssured.useRelaxedHTTPSValidation();
 		restClient = new RestClient(prop, prop.getProperty("baseURI"));
 		accessToken = restClient.getAccessToken(prop.getProperty("baseURI"), AMADEUS_TOKEN_ENDPOINT, prop.getProperty("grantType"), prop.getProperty("clientId"), prop.getProperty("clientSecret"));
 	}
@@ -34,9 +37,9 @@ public class AmadeusAPITest extends BaseTest{
 	
 	@Test
 	public void getFlightInfoTest() {
-		
+		RALogger.logOutputToFile("This is Start for Test case for getFlightInfoTest"+AmadeusAPITest.class);
 		RestClient restClientFlight = new RestClient(prop, baseURI);
-		
+
 		Map<String, Object> queryParams = new HashMap<String, Object>();
 		
 		String origin=reader.getTestData("APITestData","User","User_002","Origin");
@@ -64,6 +67,7 @@ public class AmadeusAPITest extends BaseTest{
 		System.out.println(type);//flight-destination
 		//Assert.assertEquals(type, "flight-destination");
 		Assert.assertEquals(type, null);
+		RALogger.logOutputToFile("This is End for Test case for getFlightInfoTest");
 		
 		/*
 		 * RestClient clientGet = new RestClient(prop, baseURI);

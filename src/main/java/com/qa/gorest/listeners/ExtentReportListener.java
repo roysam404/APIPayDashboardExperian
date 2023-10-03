@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.qa.gorest.utils.RALogger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -59,12 +60,14 @@ public class ExtentReportListener implements ITestListener {
 	@Override
 	public synchronized void onStart(ITestContext context) {
 		System.out.println("Test Suite started!");
+		RALogger.logOutputToFile("\n\n ---------------------------- Test Suite Started ----------------------------");
 		
 	}
 
 	@Override
 	public synchronized void onFinish(ITestContext context) {
 		System.out.println(("Test Suite is ending!"));
+		RALogger.logOutputToFile("\n\n ---------------------------- Test Suite is Ending ----------------------------");
 		extent.flush();
 		test.remove();
 	}
@@ -95,6 +98,10 @@ public class ExtentReportListener implements ITestListener {
 		System.out.println((result.getMethod().getMethodName() + " passed!"));
 		test.get().pass("Test passed");
 		test.get().pass(result.getThrowable());
+		test.get().pass(result.toString());
+
+		RALogger.logOutputToFile(result.getMethod().getMethodName() + " passed!");
+		RALogger.logOutputToFile("Test Passed");
 		//test.get().pass(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot()).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
@@ -104,6 +111,8 @@ public class ExtentReportListener implements ITestListener {
 		String methodName = result.getMethod().getMethodName();
 
 		test.get().fail(result.getThrowable());
+		RALogger.logOutputToFile(result.getMethod().getMethodName() + " Failed!");
+		RALogger.logOutputToFile("Test Failed");
 		//test.get().fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot()).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
@@ -112,6 +121,9 @@ public class ExtentReportListener implements ITestListener {
 		System.out.println((result.getMethod().getMethodName() + " skipped!"));
 		String methodName = result.getMethod().getMethodName();
 		test.get().skip(result.getThrowable());
+
+		RALogger.logOutputToFile(result.getMethod().getMethodName() + " Skipped!");
+		RALogger.logOutputToFile("Test Skipped");
 //		test.get().skip(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot()).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}

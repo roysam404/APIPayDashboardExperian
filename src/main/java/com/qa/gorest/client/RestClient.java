@@ -8,11 +8,13 @@ import java.util.Properties;
 import com.qa.gorest.constants.APIHttpStatus;
 import com.qa.gorest.frameworkexception.APIFrameworkException;
 
+import com.qa.gorest.utils.RALogger;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+
 
 public class RestClient {
 	
@@ -141,7 +143,7 @@ public class RestClient {
 	public Response get(String serviceUrl, Map<String, Object> queryParams,  Map<String, String> headersMap, boolean includeAuth, boolean log) {
 		
 		if(log) {
-			return RestAssured.given(createRequestSpec(headersMap, queryParams, includeAuth)).log().all()
+			return RestAssured.given(createRequestSpec(headersMap, queryParams, includeAuth)).filters(new RALogger.LogFilter()).log().all()
 			.when()
 				.get(serviceUrl);
 		}
@@ -235,9 +237,10 @@ public class RestClient {
 	
 	public String getAccessToken(String baseURI, String serviceURL, String grantType, String clientId, String clientSecret  ) {
 		//1. POST - get the access token
+				RALogger.logOutputToFile("Fetch Access Token");
 				RestAssured.baseURI = baseURI;
 				
-				String accessToken = given().log().all()
+				String accessToken = given().filters(new RALogger.LogFilter()).log().all()
 					.contentType(ContentType.URLENC)
 					.formParam("grant_type", grantType)
 					.formParam("client_id", clientId)

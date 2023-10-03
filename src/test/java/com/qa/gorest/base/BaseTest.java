@@ -2,6 +2,7 @@ package com.qa.gorest.base;
 
 import java.util.Properties;
 
+import com.qa.gorest.utils.RALogger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
@@ -30,7 +31,9 @@ public class BaseTest {
 	//@Parameters({"baseURI"})
 	@BeforeTest
 	public void setUp() throws Exception {
-		
+
+		RALogger.logOutputToFile("");
+		RALogger.logOutputToFile("\n\n\n\n ------------------- New run Starts This is in Before Test and initialization ------------------- ");
 		RestAssured.filters(new AllureRestAssured());
 		
 		config = new ConfigurationManager();

@@ -1,1 +1,0 @@
-{"uuid":"824868dd-2914-4a82-9afb-e5486757a51c","name":"Go Rest API Scehma Test","children":["242b8df1-058c-4e62-a6f0-c01fcc3c056f"],"befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1695030086529,"stop":1695030086530}],"afters":[],"start":1695030086528,"stop":1695030087217}
